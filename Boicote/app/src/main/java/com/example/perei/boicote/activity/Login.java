@@ -15,7 +15,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class Login extends AppCompatActivity {
-
+    private TextView cadastre;
     private EditText editLoginUsuario;
     private EditText editLoginSenha;
     private Button botaoLogar;
@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity {
         editLoginUsuario = (EditText) findViewById(R.id.edit_login_usuario);
         editLoginSenha = (EditText) findViewById(R.id.edit_login_senha);
         botaoLogar = (Button) findViewById(R.id.button_logar);
-
+        cadastre = (TextView) findViewById(R.id.cadastree);
 
 
         ParseUser.logOut();
@@ -49,7 +49,20 @@ public class Login extends AppCompatActivity {
         });
 
 
+        cadastre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(Login.this, Cadastro.class);
+                startActivity(a);
+            }
+        });
+
+
     }
+
+
+
+
 
 
     private void verificarLogin(String usuario, String senha){
