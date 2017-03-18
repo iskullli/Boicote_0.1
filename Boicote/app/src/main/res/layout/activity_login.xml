@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
+    xmlns:percent="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
-    tools:context="com.example.perei.boicote.activity.Login"
-    android:orientation="vertical"
-    android:layout_weight="1"
-    android:weightSum="1">
+    android:layout_height="match_parent"
+    tools:context="com.example.perei.boicote.activity.principal">
 
     <ImageView
         android:src="@drawable/grafiti"
@@ -18,79 +15,84 @@
         android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        android:layout_weight="0.12" />
-
+        android:layout_weight="0.12"
+        android:id="@+id/imageView2" />
     <TextView
-        android:text="Entre com:"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20px"
+        android:text="Entre com:"
         android:textColor="#000"
+        android:textSize="60px"/>
+
+    <LinearLayout
+        percent:layout_widthPercent="100%"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="20px"
         android:gravity="center"
         android:layout_gravity="center"
-        android:textSize="60px"
-        android:layout_marginTop="20px" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30px"
-        android:weightSum="4.5"
-        android:paddingLeft="80px"
-        android:paddingRight="80px">
+        android:id="@+id/linearLayout">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/image1"
+            android:text="Button 60% Width"
+            android:background="@drawable/face"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/face"
-            android:id="@+id/imageFace"
-            android:gravity="center"
-            android:layout_weight="1.5"/>
+            android:layout_width="wrap_content"
+
+            android:layout_below="@+id/textView2"
+
+            />
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/image2"
+            android:text="Button 40% Width"
+            android:background="@drawable/google"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/twitter"
-            android:id="@+id/imageTwitterr"
-            android:gravity="center"
-            android:layout_weight="1.5"/>
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/image1"
+            android:layout_below="@+id/textView2"
+            />
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/image3"
+            android:background="@drawable/twitter"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/google"
-            android:id="@+id/imageGoogle"
-            android:gravity="center"
-            android:layout_weight="1.5"/>
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/image2"
+            android:layout_below="@+id/textView2"
+            />
+
+
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:text="ou"
+        percent:layout_widthPercent="100%"
+        android:gravity="center"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="horizontal">
-
-
-        <TextView
-            android:text="ou"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView6"
-            android:textColor="#000"
-            android:textSize="60px"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="40px" />
-
-    </RelativeLayout>
+        android:id="@+id/textView6"
+        android:textColor="#000"
+        android:textSize="60px"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        percent:layout_widthPercent="100%"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:layout_below="@+id/textView6">
 
         <EditText
+            percent:layout_widthPercent="100%"
+            android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -103,6 +105,8 @@
 
 
         <EditText
+            percent:layout_widthPercent="100%"
+            android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -115,6 +119,8 @@
             android:fontFamily="sans-serif"/>
 
         <Button
+            percent:layout_widthPercent="100%"
+            android:gravity="center"
             android:text="Entrar"
             android:textColor="#fff"
             android:layout_width="match_parent"
@@ -124,29 +130,28 @@
             android:layout_marginTop="10px"
             android:textSize="20dp" />
 
+        <TextView
+            percent:layout_widthPercent="100%"
+            android:gravity="center"
+            android:text="Esqueceu a senha?"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:layout_marginTop="20px" />
+
+        <TextView
+            percent:layout_widthPercent="100%"
+            android:gravity="center"
+            android:text="@string/cadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView9"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:layout_alignParentBottom="true"
+            />
     </LinearLayout>
-
-    <TextView
-        android:text="Esqueceu a senha?"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:textColor="#000"
-        android:textAlignment="center"
-        android:layout_marginTop="20px" />
-
-    <TextView
-        android:text="@string/cadastro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView9"
-        android:textColor="#000"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_alignParentBottom="true"
-        />
-
-
-
-</LinearLayout>
+</android.support.percent.PercentRelativeLayout>
