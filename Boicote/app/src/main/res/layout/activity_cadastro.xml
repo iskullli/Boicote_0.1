@@ -92,18 +92,18 @@
         android:layout_below="@+id/Cadastre">
 
 
-    <EditText
-        percent:layout_widthPercent="100%"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Cadastre"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/textoUsuario"
-        android:hint="Digite seu nome"
-        android:textColorHint="#585858"
-        android:textAlignment="center"
-       />
+    <!--<EditText-->
+        <!--percent:layout_widthPercent="100%"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/Cadastre"-->
+        <!--android:inputType="textPersonName"-->
+        <!--android:ems="10"-->
+        <!--android:id="@+id/textoUsuario"-->
+        <!--android:hint="Digite seu nome"-->
+        <!--android:textColorHint="#585858"-->
+        <!--android:textAlignment="center"-->
+       <!--/>-->
 
     <EditText
         percent:layout_widthPercent="100%"

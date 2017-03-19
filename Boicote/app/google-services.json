@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "59032872183",
+    "firebase_url": "https://boicote-cdce0.firebaseio.com",
+    "project_id": "boicote-cdce0",
+    "storage_bucket": "boicote-cdce0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59032872183:android:d5fe8c3945307361",
+        "android_client_info": {
+          "package_name": "com.example.perei.boicote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59032872183-f8154gaug6j5oll4mvbj569r57j6f46b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.perei.boicote",
+            "certificate_hash": "a059374f348ca2cb18cb04bac3538622bdd7d57c"
+          }
+        },
+        {
+          "client_id": "59032872183-i1bdm2v2qcrd4bic02ml1r4ed0kou323.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcrBRGwhXGj-wkZN1lezobSNMaTcVwt7c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59032872183-i1bdm2v2qcrd4bic02ml1r4ed0kou323.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

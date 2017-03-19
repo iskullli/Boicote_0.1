@@ -1,8 +1,10 @@
 package com.example.perei.boicote.activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,9 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.perei.boicote.R;
-import com.parse.LogInCallback;
-import com.parse.ParseException;
-import com.parse.ParseUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static com.example.perei.boicote.R.id.textoEmail;
+import static com.example.perei.boicote.R.id.textoSenha;
 
 public class Login extends AppCompatActivity {
     private TextView cadastre;
@@ -20,11 +28,20 @@ public class Login extends AppCompatActivity {
     private EditText editLoginSenha;
     private Button botaoLogar;
 
+    private FirebaseAuth firebaseAuth;
+
+
+    public void goToMain(){
+
+        Intent intent = new Intent(Login.this, MainActivity.class);
+        startActivity(intent);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         editLoginUsuario = (EditText) findViewById(R.id.edit_login_usuario);
         editLoginSenha = (EditText) findViewById(R.id.edit_login_senha);
@@ -32,76 +49,56 @@ public class Login extends AppCompatActivity {
         cadastre = (TextView) findViewById(R.id.cadastree);
 
 
-        ParseUser.logOut();
+        firebaseAuth = FirebaseAuth.getInstance();
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
 
-        //Verificar se o usuário está logado
-        verificarUsuarioLogado();
 
+
+
+        //Login
         botaoLogar.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
-                String usuario = editLoginUsuario.getText().toString();
-                String senha = editLoginSenha.getText().toString();
+                String login = editLoginUsuario.getText().toString().trim();
+                String senha = editLoginSenha.getText().toString().trim();
 
-                verificarLogin(usuario,senha);
+
+
+                firebaseAuth.signInWithEmailAndPassword(login,senha).
+                        addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){ //Logado com sucesso
+
+                                    Log.i("LoginUser", "Usuário logado com sucesso");
+                                    Toast.makeText(Login.this, "Usuário logado com sucesso", Toast.LENGTH_SHORT).show();
+                                    goToMain();
+
+                                }else{
+                                    Log.i("LoginUser", "Erro ao fazer o login");
+                                    Toast.makeText(Login.this, "Erro ao fazer o login", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
+
+
+
 
 
         cadastre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent a = new Intent(Login.this, Cadastro.class);
-                startActivity(a);
+                Intent intent = new Intent(Login.this, Cadastro.class);
+                startActivity(intent);
             }
         });
 
 
-    }
-
-
-
-
-
-
-    private void verificarLogin(String usuario, String senha){
-
-        ParseUser.logInInBackground(usuario, senha, new LogInCallback() {
-            @Override
-            public void done(ParseUser user, ParseException e) {
-
-
-                if(e == null){
-                    Toast.makeText(Login.this,"Login realizado com sucesso", Toast.LENGTH_LONG).show();
-                    abrirAreaPrincipal();
-                }else{
-                    Toast.makeText(Login.this,"Erro ao fazer login" + e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
 
     }
-
-    public void abrirCadastroUsuario(View view){
-        Intent intent = new Intent(Login.this, Cadastro.class);
-        startActivity( intent );
-    }
-
-    private void verificarUsuarioLogado(){
-
-        if( ParseUser.getCurrentUser() != null ){
-            //Enviar usuário para tela principal do App
-            abrirAreaPrincipal();
-        }
-
-    }
-
-    private void abrirAreaPrincipal(){
-        Intent intent = new Intent(Login.this, MainActivity.class);
-        startActivity( intent );
-        finish();
-    }
-
 }
