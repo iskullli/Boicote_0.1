@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Cadastro extends AppCompatActivity {
 
@@ -50,6 +52,9 @@ public class Cadastro extends AppCompatActivity {
             }
         });
 
+
+
+
         //Cadastro
         botaoCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,17 +68,19 @@ public class Cadastro extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 String senha = textoSenha.getText().toString();
-                                if(senha.length() <= 6){
-                                if(task.isSuccessful()){ //Cadastrado com sucesso
 
+                                if(task.isSuccessful()){ //Cadastrado com sucesso
                                     Log.i("CreateUser", "Cadastrado com sucesso");
-                                    Toast.makeText(Cadastro.this, "Cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference ref = database.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                    ref.child("nome").setValue(textoEmail.getText().toString());
+                                    ref.child("uid").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
                                     backToLogin();
                                 }else{
                                     Log.i("CreateUser", "Não Cadastrado");
                                     Toast.makeText(Cadastro.this, "Erro no Cadastro, sua senha precisa ter 6 digitos ou mais", Toast.LENGTH_SHORT).show();
                                 }
-                            }
+
                         }
 
                         });

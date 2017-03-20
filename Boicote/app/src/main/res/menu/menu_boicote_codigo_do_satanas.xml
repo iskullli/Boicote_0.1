@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.perei.boicote">
+
+    <item android:id="@+id/Boicotada"
+        android:title="Fazer um boicote" />
+
+    <item android:id="@+id/feed"
+        android:title="Meu Feed" />
+
+    <item android:id="@+id/sair"
+        android:title="Logout" />
+</menu>

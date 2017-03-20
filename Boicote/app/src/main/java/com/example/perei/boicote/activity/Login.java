@@ -16,11 +16,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import static com.example.perei.boicote.R.id.textoEmail;
-import static com.example.perei.boicote.R.id.textoSenha;
 
 public class Login extends AppCompatActivity {
     private TextView cadastre;
@@ -29,7 +28,6 @@ public class Login extends AppCompatActivity {
     private Button botaoLogar;
 
     private FirebaseAuth firebaseAuth;
-
 
     public void goToMain(){
 
@@ -47,6 +45,20 @@ public class Login extends AppCompatActivity {
         editLoginSenha = (EditText) findViewById(R.id.edit_login_senha);
         botaoLogar = (Button) findViewById(R.id.button_logar);
         cadastre = (TextView) findViewById(R.id.cadastree);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+
+
+
+
+        if (firebaseAuth.getCurrentUser() != null){
+            Log.i("verificaUsurio", "Usuário está logado!");
+            goToMain();
+        }else{
+            Log.i("verificaUsurio", "Usuário não está logado!");
+
+        }
+
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -65,24 +77,20 @@ public class Login extends AppCompatActivity {
                 String login = editLoginUsuario.getText().toString().trim();
                 String senha = editLoginSenha.getText().toString().trim();
 
-
-
-                firebaseAuth.signInWithEmailAndPassword(login,senha).
-                        addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                firebaseAuth.signInWithEmailAndPassword(login, senha)
+                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){ //Logado com sucesso
-
-                                    Log.i("LoginUser", "Usuário logado com sucesso");
-                                    Toast.makeText(Login.this, "Usuário logado com sucesso", Toast.LENGTH_SHORT).show();
-                                    goToMain();
-
+                                if (!task.isSuccessful()) {
+                                    Log.d("meuLog", "Falha na autenticação");
                                 }else{
-                                    Log.i("LoginUser", "Erro ao fazer o login");
-                                    Toast.makeText(Login.this, "Erro ao fazer o login", Toast.LENGTH_SHORT).show();
+                                            Log.i("LoginUser", "Usuário logado com sucesso");
+        Toast.makeText(Login.this, "Usuário logado com sucesso", Toast.LENGTH_SHORT).show();
+        goToMain();
                                 }
                             }
                         });
+
             }
         });
 
