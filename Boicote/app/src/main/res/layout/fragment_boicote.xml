@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.perei.boicote.fragments.BoicoteFragment">
+
 
     <!-- TODO: Update blank fragment layout -->
     <ListView
@@ -11,5 +13,15 @@
         android:id="@+id/listView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_action_add"
+            app:layout_anchor="@id/listView"
+            app:layout_anchorGravity="bottom|right|end" />
+
 
 </FrameLayout>
